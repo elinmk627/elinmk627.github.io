@@ -13,23 +13,28 @@
         formNum = parseInt(formNum, 10);
         ToNum = parseInt(ToNum, 10);
 
-        for (var i = 1; i <= 9; i++) {                          //행
-          tds = [];                                             //단이 끝날때마다 초기화
-          for (var j = formNum; j <= ToNum; j++) {              //열
-            tds.push("<td>" + j + " * " + i + " = " + (i*j) + "</td>");
+        if(formNum>ToNum) {
+          alert("Form이 To보다 클수 없습니다. 다시 입력해 주세요.");
+          return false;
+        } else {
+          for (var i = 1; i <= 9; i++) {                          //행
+            tds = [];                                             //단이 끝날때마다 초기화
+            for (var j = formNum; j <= ToNum; j++) {              //열
+              tds.push("<td>" + j + " * " + i + " = " + (i*j) + "</td>");
+            }
+            trs.push("<tr>"+tds.join("")+"</tr>");                //tds.join("") 앞에 for문의 문자열이 모두 들어감
           }
-          trs.push("<tr>"+tds.join("")+"</tr>");                //tds.join("") 앞에 for문의 문자열이 모두 들어감
-        }
 
-        var tbody = document.getElementById("target");
-        tbody.innerHTML = trs.join("");
+          var tbody = document.getElementById("target");
+          tbody.innerHTML = trs.join("");
 
-        var html = "";
-        for (var t=formNum; t<=ToNum; t++) {
-          html += "<th style='text-align:center'>" + t + "</th>";
+          var html = "";
+          for (var t=formNum; t<=ToNum; t++) {
+            html += "<th style='text-align:center'>" + t + "단</th>";
+          }
+          var thead = document.getElementById("thTarget");
+          thead.innerHTML = html;
         }
-        var thead = document.getElementById("thTarget");
-        thead.innerHTML = html;
       }
     </script>
   </head>
